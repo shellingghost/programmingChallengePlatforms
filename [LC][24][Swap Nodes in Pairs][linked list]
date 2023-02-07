@@ -1,0 +1,54 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# [1,2,3,4]
+# [1,4,3]
+class Solution(object):
+    def swapPairs(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        # looping through list once, time complexity: O(N)
+        # much pointer work, but that's it, space complexity: O(1)
+        # abstracting into vars within defined utility segments
+
+        # use sentinel to keep track of front &
+        #   allow for first* node swaps
+        #   value unimportant, set it's next pointing towards head of ll
+        sentinel = ListNode(0)
+        sentinel.next = head
+       
+        # prep swapping vars
+        old = sentinel
+       
+        # head used to check
+        # first used to leap frog
+        while  head and head.next:
+           
+            # prep w/ loop vars
+            first = head
+            second = head.next
+           
+            # swap
+            # sets old->2
+            old.next = first.next
+            # sets 1->3
+            first.next = second.next
+            # sets 2->1
+            second.next = first
+           
+            # returns next in chain
+            # test line/figuring out format --- sentinel utility (not head)
+            # head = old.next
+
+            # prep
+           
+            # sets old->1
+            old = first
+            #sets loop check/loop start variables
+            head = old.next
+
+        return sentinel.next
