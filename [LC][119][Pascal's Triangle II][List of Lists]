@@ -1,0 +1,44 @@
+class Solution(object):
+    def getRow(self, rowIndex):
+        """
+        :type rowIndex: int
+        :rtype: List[int]
+        """
+        # in terms of data structure - lists
+        # traversal by pointers
+
+
+        # list of lists
+        apple =[[1]]
+
+        # how many sequences are required?
+        #    original and builder, builder uses original
+
+        # builds apple (x as row #)
+        for x in range(0, rowIndex):
+            # workbench: temporarily add before permanently changing
+            # sequence - add for standardization of next loop
+
+            # building off of apple, NOT next row*
+            # apple holds rows
+            intermediateT = [0] + apple[x] + [0]
+
+
+            # for new row (append here)
+            adding = []
+
+            # builds rows
+            for y in range(0,len(intermediateT)-1):
+                # what needs to happen here? draw it out*
+                # move pointers, add, append
+
+                adding.append(intermediateT[y] + intermediateT[y+1])
+
+            # append list
+            apple.append(adding)
+
+            # try to program in sequences
+            #   i know x has to happen, where would x go?
+
+        # check zero index
+        return apple[rowIndex]
