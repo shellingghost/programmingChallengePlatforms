@@ -1,3 +1,7 @@
+# recursion
+# Runtime: 687 ms
+# Memory Usage: 13.5 MB
+
 class Solution(object):
     def fib(self, n):
         """
@@ -13,4 +17,27 @@ class Solution(object):
         # class self format
         # TODO: Solve with memoization 
         
+# recursion & memoization
+# Runtime: 21 ms
+# Memory Usage: 13.3 MB
+
+class Solution(object):
+    cache = {1:1,2:1}
+    def fib(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
         
+        # memoization cache
+        # in class, self*
+        if n in self.cache.keys():
+            return self.cache[n]
+        
+        # write base case
+        if n < 2:
+            return n
+                
+        else:
+            self.cache[n] = self.fib(n-1) + self.fib(n-2)
+            return self.cache[n]
