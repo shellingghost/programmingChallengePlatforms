@@ -1,0 +1,25 @@
+class Solution(object):
+    count = 0
+    # 0 for counting leaf
+    memo = {0:1,1:1}
+    
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """        
+        # for each leaf, add one - each leaf represents one variation
+        if n in self.memo:
+            self.count += self.memo[n]
+            return self.memo[n]
+        
+        if n < 1:
+            self.count += 1
+            return n
+            
+        else:
+            # recurse twice, once for each path
+            # the sum for memo
+            total = self.climbStairs(n-1) + self.climbStairs(n-2)
+            self.memo[n] = total
+        return self.count
