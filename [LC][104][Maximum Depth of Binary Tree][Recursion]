@@ -17,3 +17,6 @@ class Solution(object):
             left = self.maxDepth(root.left)
             right = self.maxDepth(root.right)
             return max(left,right) + 1
+           
+# time complexity = O(N) - we visit every node once
+# space complexity = O(log(N)) - balanced tree
