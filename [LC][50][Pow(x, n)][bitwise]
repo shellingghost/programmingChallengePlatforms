@@ -1,0 +1,27 @@
+class Solution(object):
+    def myPow(self, x, n):
+        """
+        :type x: float
+        :type n: int
+        :rtype: float
+        """
+
+        negat = 0
+
+        if n < 0:
+            negat = 1
+        n = abs(n)
+
+        a = 1
+        while n != 0:
+            if n & 1:
+                a *= x
+            # doubling binary position value
+            x *= x
+            # right shift to check next positional bin int
+            n >>= 1
+
+        if negat == 1:
+            a = 1/a
+        return a
+        
