@@ -12,3 +12,18 @@ class Solution(object):
         return False
 
 # O(N) time complexity & O(N) space complexity
+
+
+
+# brute force method
+# notice the use of start & stop range within the double loop (!index error as two loops mediate future checks)
+def containsDuplicate(nums):
+    """
+    :type nums: List[int]
+    :rtype: bool
+    """
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] == nums[j]:
+                return True
+    return False
