@@ -23,7 +23,28 @@ def containsDuplicate(nums):
     :rtype: bool
     """
     for i in range(len(nums)):
+        # get what we want by looking ahead relative to first index while respecting end range 
         for j in range(i+1, len(nums)):
             if nums[i] == nums[j]:
                 return True
     return False
+# time complexity O(N^2) and space complexity O(1) constant/only vars created
+
+
+# sort method
+# notice the requirement of subtracting one from end range as to not index error
+def containsDuplicate(nums):
+    """
+    :type nums: List[int]
+    :rtype: bool
+    """
+    nums.sort()
+
+    # must use -1 because we are checking ahead within one loop, index error possible
+    for i in range(0, len(nums)-1):
+        if nums[i] == nums[i+1]:
+            return True
+    return False
+
+# sort algo takes O(N*logN), space complexity --- depends on how the algo uses memory to sort
+
