@@ -10,3 +10,5 @@ class Solution(object):
                 return True
             set1.add(x)
         return False
+
+# O(N) time complexity & O(N) space complexity
