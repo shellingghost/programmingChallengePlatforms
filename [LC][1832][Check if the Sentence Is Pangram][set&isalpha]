@@ -1,0 +1,9 @@
+class Solution:
+  def checkIfPangram(self, sentence):
+    set1 = set()
+    for char in sentence.lower():
+      if char.isalpha():
+        set1.add(char)
+    if len(set1) == 26:
+      return True
+    return False
