@@ -7,3 +7,6 @@ class Solution:
     if len(set1) == 26:
       return True
     return False
+
+Time complexity O(N) as it only iterates over each element once
+Space complexity is O(1) as there is a static limit of 26 (does not scale)
