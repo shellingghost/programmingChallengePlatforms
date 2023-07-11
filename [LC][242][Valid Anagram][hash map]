@@ -1,0 +1,28 @@
+class Solution(object):
+    def isAnagram(self, s, t):
+        # compare length, compare dictionaries
+        # making a key
+
+        # build dictionary
+        # go through second string and decriment
+
+        sDict = {}
+        for char in s:
+            if char not in sDict:
+                sDict[char] = 1
+            else:
+                sDict[char] += 1
+        
+        for char in t:
+            if char not in sDict:
+                return False
+            else:
+                sDict[char] -= 1
+                if sDict[char] < 0:
+                    return False
+        for values in sDict.values():
+            if values != 0:
+                return False
+        return True
+
+time complexity O(N) space complexity O(1) // max possible 26 char
