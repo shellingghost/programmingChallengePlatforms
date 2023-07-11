@@ -1,0 +1,42 @@
+naive
+class Solution(object):
+    def isPalindrome(self, s):
+        s = s.lower()
+        s1 = []
+        for char in s:
+            if char.isalnum():
+                s1.append(char)
+    # built in method reversed creates an iterator, list() turns it into a list
+        s2 = list(reversed(s1))
+        if s1 == s2:
+            return True
+        return False
+
+time complexity O(N) space complexity O(N)
+
+
+two pointer: 
+class Solution(object):
+    def isPalindrome(self, s):
+
+
+      l = 0
+      r = len(s) - 1
+      while l < r:
+          # (l<r) check required, may be all non alphanum - infin loop
+          while l < r and s[l].isalnum() == False:
+            l += 1
+          while l < r and s[r].isalnum() == False:
+            r -= 1
+
+          check3 = s[l]
+          check4 = s[r]
+          if s[l].lower() != s[r].lower():
+              check1 = s[l].lower()
+              check2 = s[r].lower()
+              return False
+          l += 1
+          r -= 1
+      return True
+
+time complexity O(N) space complexity O(1)
