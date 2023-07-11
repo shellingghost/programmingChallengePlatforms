@@ -1,0 +1,36 @@
+class Solution(object):
+  def reverseVowels(self, s):
+    vowels = 'aeiouAEIOU'
+    # two pointer method
+    l = 0
+    r = len(s)-1
+    charl = []
+    # convert s to l, s is immutable/harder to manipulate
+    for char in s:
+      charl.append(char)
+
+    while l < r:
+      # while charl[l] not a vowel
+      while charl[l] not in vowels and l < r:
+        l += 1
+
+      while charl[r] not in vowels and l < r:
+        r -= 1
+
+      # check before swap
+      if l > r:
+        break
+      
+      # swap
+      charl[l], charl[r] = charl[r],charl[l]
+      l += 1
+      r -= 1
+    
+    newS = ''
+    # translate list -> string
+    for char in charl:
+      newS += char
+
+    return newS
+
+time complexity O(N) and space complexity O(N)
