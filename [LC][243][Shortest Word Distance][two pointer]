@@ -1,0 +1,20 @@
+class Solution(object):
+    def shortestDistance(self, wordsDict, word1, word2):
+        # try to do a one pass with indexes
+        index1 = -1
+        index2 = -1
+        mini = len(wordsDict)
+
+        for i in range(0, len(wordsDict)):
+            if wordsDict[i] == word1:
+                index1 = i
+
+            if wordsDict[i] == word2:
+                index2 = i
+
+            if index1 != -1 and index2 != -1:
+                if abs(index1 - index2) < mini:
+                    mini = abs(index1 - index2)
+        return mini
+
+time complexity O(N) space complexity O(1)
