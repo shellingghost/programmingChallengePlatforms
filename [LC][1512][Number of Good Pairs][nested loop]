@@ -15,4 +15,19 @@ class Solution(object):
         return count
 
 time complexity O(N^2) and space complexity O(1)
-# revisit, a better way to do this
+
+
+def numGoodPairs(nums):
+  pairs = 0
+  dict1 = {}
+  for n in nums:
+    # find another, init/add 1 to count
+    # helpful to remember .get when initializing dictionaries
+    dict1[n] = dict1.get(n, 0) + 1
+    # each new addition must take into account and add prior combinations
+    # each new addition cannot count itself as a pair (count - 1)
+    pairs += dict1[n] - 1
+  return pairs
+
+pairs = [1,1,1]
+time complexity O(N) space complexity O(N)
