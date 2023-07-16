@@ -1,0 +1,13 @@
+def remove_duplicates(arr):
+  # two pointer
+  l = 1
+
+  # sorted, duplicates/new vals only require short term memory checks (-1)
+  for r in range(1,len(arr)):
+      if arr[r] != arr[r-1]:
+          arr[l] = arr[r]
+          l += 1
+
+  return l
+
+time complexity O(N) and space complexity O(1)
