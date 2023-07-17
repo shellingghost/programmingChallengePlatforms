@@ -1,0 +1,52 @@
+class Solution(object):
+    def sortedSquares(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        
+            # TODO: try - i want to square in place, sort func, then copy everything over
+        n = len(nums)
+        squares = [0 for x in range(n)]
+        # TODO: Write your code here
+        for num in range(0, len(nums)):
+            nums[num] = nums[num] * nums[num]
+        nums.sort()
+        for sq in range(0, len(nums)):
+            squares[sq] = nums[sq]
+
+        return squares
+
+# time complexity O(n logn) from .sort() and space complexity is O(n)
+
+
+
+class Solution(object):
+    def sortedSquares(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+
+        # sorted two pointer advantage, sim to find sum w/two pointer*
+        n = len(nums)
+        squares = [0 for x in range(n)]
+
+        l = 0
+        r = len(nums) - 1
+        fin = r
+
+        while fin >= 0:
+            lsq = nums[l] * nums[l]
+            rsq = nums[r] * nums[r]
+            if abs(lsq) > abs(rsq):
+                squares[fin] = abs(lsq)
+                l += 1
+            else:
+                squares[fin] = abs(rsq)
+                r -= 1
+            fin -= 1
+
+        return squares
+time complexity O(N) and space complexity O(N)
+
