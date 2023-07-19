@@ -15,5 +15,20 @@ class Solution(object):
                 right -= 1
         return [left+1,right+1]
 
-time complexity O(N) space complexity O(1)
-definitely can be improved on***
+time complexity O(N) space complexity O(1)|optimal
+
+class Solution(object):
+    def twoSum(self, numbers, target):
+        """
+        :type numbers: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        
+        dict1 = {}
+        for i, num in enumerate(numbers):
+            if target-num in dict1:
+                return [dict1[target-num]+1,i+1]
+            dict1[num] = i
+actually invalid because the space complexity is O(n) where we were to have it be constant
+leetcode accepts and marks it better in space and time complexity, but is invalid*
