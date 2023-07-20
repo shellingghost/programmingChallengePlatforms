@@ -1,0 +1,35 @@
+class Solution(object):
+    def threeSumClosest(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        # TODO: sort-> enummerate loop -> init diff -> nested while loop for l & r pointer (no skim required)
+        nums.sort()
+        # init high number
+        ret = float("inf")
+        for i, num in enumerate(nums):
+            # comp combo value against a standard/target
+            # set/reset
+            l = i + 1
+            r = len(nums) - 1
+            while l < r:
+                # two pointer rotation variable
+                combo = num + nums[l] + nums[r]
+
+                # two var, outside loop &  one for loop comp
+                # comparison before iteration*** 
+                if abs(combo - target) < abs(ret - target):
+                    ret = num + nums[l] + nums[r]
+
+                if combo < target:
+                    l += 1
+                elif combo > target:
+                    r -= 1
+                else:
+                    # case - just three in list (l<r)
+                    return combo
+
+        return ret
+time complexity O(N^2) and space complexity O(N)
