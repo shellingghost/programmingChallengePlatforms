@@ -1,0 +1,60 @@
+class Solution(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+
+
+        triplets = []
+        # TODO: brute force -> tinker with sort/ O(nlogn)
+        for m in range(0, len(nums)):
+            for n in range(m+1, len(nums)):
+                for o in range(n+1, len(nums)):
+                    if nums[m] + nums[n] + nums[o] == 0:
+                        arr1 = [nums[m],nums[n],nums[o]]
+                        arr1.sort()
+                        if arr1 not in triplets:
+                            triplets.append(arr1)
+        return triplets
+
+time complexity O(n^3) and space complexity O(n)
+
+class Solution(object):
+    def threeSum(self,nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        ret = []
+        # sort() is time complexity O(nlogn) and space complexity O(n)
+        nums.sort()
+        # build off of index
+        for i, num in enumerate(nums):
+            # if i isnt passed 1 theres no issue, else check prior (short term mem for duplicates)||a skim
+            # overlaps with dup indexes can only happen once with skims*
+            if i > 0 and num == nums[i-1]:
+                # left & right pointers -> cases of inequality -> case of equality
+                # building off of i
+                continue
+            left, right = i + 1, len(nums)-1
+            # index error cover
+            while left < right:
+                totalSum = num + nums[left] + nums[right]
+                if totalSum < 0:
+                    left += 1
+                elif totalSum > 0:
+                    right -= 1
+                else:
+                    # else equality and how to progress
+                    # two ways to do it, move both with duplicate check OR move just 1 with duplicate checks
+                    # it would be a unique combination
+                    ret.append([num,nums[left],nums[right]])
+                    # the resets and the skims create unique - fixing catchup issue
+                    left += 1
+                    while nums[left] == nums[left-1] and left < right:
+                        left += 1
+
+        return ret
+
+time complexity O(N^2) space complexity O(N)
