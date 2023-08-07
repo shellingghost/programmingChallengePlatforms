@@ -16,8 +16,7 @@ class Solution(object):
 
 #time complexity O(n^3) and space complexity O(n) / tim sort
 
-# possible solution
-# TODO: find better index fix
+
 class Solution(object):
     def threeSumSmaller(self, nums, target):
         """
@@ -25,24 +24,24 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        nums.sort()
         count = 0
-        for i in range(0, len(nums)-2):
-            # reset
-            j = i + 1
-            k = j + 1
-            while nums[i] + nums[j] + nums[k] < target:
-                count += 1
-                # over index from iterating then checking
-                # look for eloquent/efficent fix
-                if k < len(nums)-1:
-                    k += 1
-                elif j < len(nums)-2:
+        nums.sort()
+        for i in range(len(nums)):
+            j = i+1
+            k = len(nums)-1
+
+            # j -> k as possibilities, use
+            while j < k:
+                spec = nums[i] + nums[j] + nums[k]
+                if spec < target:
+                    # levy ordered list(less than) & two point principle
+                    # if the highest val fits the budget, everything under will, too
+                    count += k-j
+                    # see if the next range set works
                     j += 1
-                # break out of while loop to pacing i loop
                 else:
-                    break            
-                       
+                    # decrease highest val otherwise
+                    k -= 1
         return count
 
         
