@@ -1,0 +1,17 @@
+class Solution(object):
+    def threeSumSmaller(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        nums.sort()
+        count = 0
+        for i in range(0, len(nums)):
+            for j in range(i+1, len(nums)):
+                for k in range(j+1, len(nums)):
+                    if nums[i] + nums[j] + nums[k] < target:
+                        count += 1
+        return count
+
+#time complexity O(n^3) and space complexity O(n) / tim sort
