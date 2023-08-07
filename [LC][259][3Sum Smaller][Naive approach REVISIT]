@@ -43,5 +43,7 @@ class Solution(object):
                     # decrease highest val otherwise
                     k -= 1
         return count
+# time complexity O(n^2) and space complexity is O(n)/tim sort //best case O(1) 
+
 
         
