@@ -1,0 +1,53 @@
+# Given an array with positive numbers and a positive target number, find all of its contiguous subarrays whose product is less than the target number.
+
+# Example 1:
+
+# Input: [2, 5, 3, 10], target=30                                              
+# Output: [2], [5], [2, 5], [3], [5, 3], [10]                           
+# Explanation: There are six contiguous subarrays whose product is less than the target.
+
+
+
+class Solution:
+  def findSubarrays(self, arr, target):
+    result = []
+
+    for i in range(0, len(arr)):
+        if arr[i] < target:
+            result.append([arr[i]])
+
+            # include initial
+            prodTotal = arr[i]
+
+            # start with first
+            tempList = [arr[i]]
+
+            # expanding range with incrementing variable
+            j = i
+
+            # j as i (start of range) and varInc as incremental end of range
+            # 1st cond: j < len(arr), 2nd: prodTotal < target
+            while j < len(arr):
+                # protect against index overlap
+                if j != i:
+                    prodTotal *= arr[j]
+                    if prodTotal < target:
+                        # build tempList(s)
+                        tempList.append(arr[j])
+
+                        # append them as we go
+                        finList = tempList.copy()
+                        result.append(finList)
+
+                    else:
+                        break
+
+                # iterate range
+                j += 1
+
+
+
+    return result
+
+
+time complexity O(n^2) and space complexity O(1)
