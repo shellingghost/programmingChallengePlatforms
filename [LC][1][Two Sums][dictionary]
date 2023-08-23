@@ -1,5 +1,3 @@
-# works, but revisit --- can do better
-
 class Solution(object):
     def twoSum(self, nums, target):
         """
