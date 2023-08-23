@@ -1,0 +1,40 @@
+# works, but revisit --- can do better
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        for i in range(0, len(nums)):
+            for j in range(i+1, len(nums)):
+                if nums[i] + nums[j] == target:
+                    return [i,j]
+
+time complexity O(n^2) and space complexity O(1)
+
+
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        # summary:
+        # only one loop through to build a dictionary, then searching through it in list
+        # as we go, we are seeing if we found the pairing while adding to what we have found
+    
+        summ = {}
+        for i in range(0, len(nums)):
+            # while iterating, search dictionary
+            difference = target - nums[i]
+            if difference in summ.keys():
+                return [i,summ[difference]]
+            else:
+                # noting what we found
+                summ[nums[i]] = i
+
+time complexity O(n) and space complexity o(n) - having a dict filled with n size key/value pairs
