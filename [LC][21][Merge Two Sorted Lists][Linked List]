@@ -25,4 +25,65 @@ class Solution(object):
             current = current.next
         current.next = list1 or list2
         return head.next
-                
+
+# time complexity O(m+n) and space complexity is O(1)
+
+
+
+
+# creating a head to track the tail behavior and pointing the tail while iterating its pointer to the next lowest/equal node value, 
+# and when one list naturally exhausts before the other
+# controlling for edge cases of None at the outset in both or either linked list 
+# unnecessarily verbose, but it works --- possibly better to see it as having a tail than current*
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def mergeTwoLists(self, list1, list2):
+        """
+        :type list1: Optional[ListNode]
+        :type list2: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        # tracking for return
+        head = ListNode()
+
+        # tracking for tail behavior
+        tail = head
+
+        # edge case
+        if list1 == None and list2 == None:
+            return None
+
+        elif list1 == None:
+            return list2
+
+        elif list2 == None:
+            return list1
+
+        while list2 != None and list1 != None:
+            # standard tail directing
+            if list1.val <= list2.val:
+                # point tail, shift list.next
+                tail.next = list1
+                list1 = list1.next
+                tail = tail.next
+            else:
+                # point tail, shift list.net
+                tail.next = list2
+                list2 = list2.next
+                tail = tail.next
+
+
+
+            # empty case
+            if list1 == None:
+                tail.next = list2
+            elif list2 == None:
+                tail.next = list1
+        return head.next
+
+# time complexity O(m+n) and space complexity is O(1)
