@@ -40,3 +40,5 @@ class Solution(object):
             # do we have to reset? yes
             #   when we get a new low reset max
         return histDiff
+
+# time complexity O(n) and space complexity O(1)
