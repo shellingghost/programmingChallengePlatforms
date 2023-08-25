@@ -1,0 +1,42 @@
+# iterating while tracking max/min values to gather maximum difference/profit while reseting when a new min value comes up
+
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        # buy low sell high
+        # how to track differences while keepig iterations low?
+
+        # find lowest while iterating and track the differences
+        # if current diff more than historic diff
+
+        histDiff = 0
+        maxVal = 0
+        minVal = 0
+        i = 0
+
+        while i < len(prices):
+            if i == 0:
+                maxVal = prices[i]
+                minVal = prices[i]
+
+            else:
+                # getting min val
+                if prices[i] < minVal:
+                    minVal = prices[i]
+                    # reset relative differences
+                    maxVal = prices[i]
+                # getting maxVal
+                elif prices[i] > maxVal:
+                    diff = prices[i] - minVal
+                    if diff > histDiff:
+                        # historical diff
+                        histDiff = diff
+                        maxVal = prices[i]
+            i += 1
+
+            # do we have to reset? yes
+            #   when we get a new low reset max
+        return histDiff
