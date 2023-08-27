@@ -26,3 +26,39 @@ class Solution(object):
         return True
 
 time complexity O(N) space complexity O(1) // max possible 26 char
+
+
+
+
+
+# revisiting problem while working through grind75
+# it works, done relatively quickly, but it's objectively less efficient than last lc entry
+# after some digging, using indexing at each part of the for loop makes it very* inefficient
+# using - for char in list* makes it so we're not jumping around a list and have a preset pointer***
+
+class Solution(object):
+    def isAnagram(self, s, t):
+        # use a dictionary, build off of one
+
+        dict1 = {}
+
+        for i in range(0, len(s)):
+            # build dict
+            if s[i] not in dict1:
+                dict1[s[i]] = 0
+            dict1[s[i]] += 1
+
+        for j in range(0, len(t)):
+            # delete dict
+            if t[j] not in dict1:
+                return False
+
+            if t[j] in dict1:
+                dict1[t[j]] -= 1
+                if dict1[t[j]] < 0:
+                    return False
+        
+        for values in dict1.values():
+            if values != 0:
+                return False
+        return True
