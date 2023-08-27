@@ -1,0 +1,30 @@
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        l, r = 0, len(nums)-1
+
+        while l <= r:
+            # could be one length
+            # zero index
+            center = (l + r)//2
+
+            # equal*, less more
+            if nums[center] == target:
+                return center
+            
+            elif nums[center] < target:
+                # iterate/too low
+                l = center + 1
+
+            elif nums[center] > target:
+                #iterate/ too high
+                r = center - 1
+
+        # does not exist
+        return -1
+
+# time complexity o(logn) space complexity o(1)
