@@ -1,0 +1,55 @@
+733. Flood Fill
+
+# needed a structure to hold future checks, recursive call stack would work well as well as take care of all the changes
+# watch for possible non-change scenario, original color spot is the same as the new color --- no populate possible
+
+class Solution(object):
+    def floodFill(self, image, sr, sc, color):
+        """
+        :type image: List[List[int]]
+        :type sr: int
+        :type sc: int
+        :type color: int
+        :rtype: List[List[int]]
+        """
+
+        # need a structure to keep the search* ordered
+        # not stack, too involved nor queue
+        # recurse call stack could work, work is handled
+        # dfs attempt
+
+
+        # save color - for population checks
+        tbp = image[sr][sc]
+        
+        # unable to populate
+        #   same color, no change possible
+        if color == tbp:
+            return image
+
+        # recursion define
+        def dfs(r,c):
+            # populate case
+            if image[r][c] == tbp:
+                # paint
+                image[r][c] = color
+
+                # gate check four neighbors, indexing cover
+                # above
+                if r > 0:
+                    dfs(r-1,c)
+                # below
+                if r < len(image)-1:
+                    dfs(r+1,c)
+                # left
+                if c > 0:
+                    dfs(r,c-1)
+                # right
+                if c < len(image[0])-1:
+                    dfs(r,c+1)
+
+        # recursive call
+        dfs(sr,sc)
+        return image
+
+# time complexity is O(n) - might check every node, and space complexity is O(n) - the stack created can contain each node worst case
