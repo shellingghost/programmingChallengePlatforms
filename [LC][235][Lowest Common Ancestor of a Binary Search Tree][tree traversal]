@@ -1,0 +1,45 @@
+# revisit this - beats 68 time complexity and 71 space complexity frequently*
+
+# observed that depending on the immediate children we can determine how to search and if the current node is the LCA using a few gates/bin tree traversal
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def lowestCommonAncestor(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+        # use it like a binary search tree
+        # if subroot is >= one and <= than another||mirror
+        #   it is the LCA
+        # if it's > both, it is not possible - remove
+        # if it's < both, it is not possible - remove
+        
+        subRoot = root
+        
+        while True:
+            value = subRoot.val
+            valueP = p.val
+            valueQ = q.val
+
+            if (subRoot.val >= p.val) and (subRoot.val <= q.val):
+                return subRoot
+
+            if (subRoot.val <= p.val) and (subRoot.val >= q.val):
+                return subRoot
+
+            elif (subRoot.val > p.val) and (subRoot.val > q.val):
+                subRoot = subRoot.left 
+
+            elif (subRoot.val < p.val) and (subRoot.val < q.val):
+                subRoot = subRoot.right
+
+# time complexity O(logn) and space complexity O(1)
