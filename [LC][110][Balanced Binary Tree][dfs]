@@ -1,0 +1,37 @@
+# using the recursive stack, we are doing a bottom up approach so we do not reiterate through nodes to gather information. we utilize logic gates which check passed info (valid tree/height) and return with it 
+# updated info - if balanced/+1 height to max
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isBalanced(self, root):
+
+        def dfs(root):
+            # base case - holding info in stack
+            if not root: return [True, 0]
+
+            # init recursion output using variables
+            left = dfs(root.left)
+            right = dfs(root.right)
+
+            # checking three conditions 
+            # left and right remain true, they have valid trees - &
+            #   - they are valid when compared against each other
+            # three conditions required to work bottom up*
+            #   recursive calls all the way down
+            #   keep memory in recursive call stack
+
+            # if passes bool gates as T, valid
+            balanced = (left[0] and right[0] and abs(left[1] - right[1]) <= 1)
+
+            return [balanced, 1 + max(left[1], right[1])]
+        
+        # what resolves, return the first element in the list
+        # resolve -> list[0]
+        return dfs(root)[0]
+
+# time complexity o(n) and time complexity o(n) - balancing issues possible
