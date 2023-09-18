@@ -1,0 +1,136 @@
+# found two ways to implement a queue using a stack
+# first way is maintaining the bottom of the stack as the head of the queue, pushing is as easy as appending, but popping requires that 
+#  everything is migrated to the second stack
+
+# second way is maintaining the top of the stack as the head of the queue, much neater as we return popped values instead of storing them in a varible 
+#  popping is just removing the top/head of the stack and returning that value,  but pushing requires migrating the entire stack1 to stack2 to access the bottom of stack1
+
+
+
+# approach 1 
+
+class MyQueue(object):
+
+    def __init__(self):
+        self.s1 = []
+        self.s2 = []
+        
+#treating bottom as top of queue/maintaining it using stack2
+# it can be done either way/top as [0] or [-1] - minor swaps of push and pop
+
+# maintainig a queue vs maintaining a stack
+#   a queue requires manipulation, the top is always A
+#   stack requires manipulation when popping, moving all of the s1 to s2 to touch 
+#       the top of the stack/remove it, then pushing it back over (likely worse O())
+    def push(self, x):
+        """
+        :type x: int
+        :rtype: None
+        """
+        self.s1.append(x)
+
+    def pop(self):
+        """
+        :rtype: int
+        """
+        # move over all of s1
+        while self.s1:
+            self.s2.append(self.s1.pop())
+        # remove top - lowest from s1
+        give = self.s2.pop()
+        while self.s2:
+            self.s1.append(self.s2.pop())
+        return give
+            
+
+    def peek(self):
+        """
+        :rtype: int
+        """
+      #  if self.s1:
+      #      return self.s1[0]
+        return self.s1[0]
+        
+
+    def empty(self):
+        """
+        :rtype: bool
+        """
+        return not self.s1
+
+
+
+# Your MyQueue object will be instantiated and called as such:
+# obj = MyQueue()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.peek()
+# param_4 = obj.empty()
+
+
+
+# approach 2
+
+class MyQueue(object):
+
+    def __init__(self):
+        self.s1 = []
+        self.s2 = []
+        
+#treating bottom as top of queue/maintaining it using stack2
+# it can be done either way/top as [0] or [-1] - minor swaps of push and pop
+
+# maintainig a queue vs maintaining a stack
+#   a queue requires manipulation, the top is always A
+#   stack requires manipulation when popping, moving all of the s1 to s2 to touch 
+#       the top of the stack/remove it, then pushing it back over (likely worse O())
+    def push(self, x):
+        """
+        :type x: int
+        :rtype: None
+        """
+        # move over all of s1
+        while self.s1:
+            self.s2.append(self.s1.pop())
+
+        self.s1.append(x)
+
+
+        while self.s2:
+            self.s1.append(self.s2.pop())
+
+
+
+    def pop(self):
+        """
+        :rtype: int
+        """
+        # remove top - lowest from s1
+        return self.s1.pop()
+
+
+            
+
+    def peek(self):
+        """
+        :rtype: int
+        """
+      #  if self.s1:
+      #      return self.s1[0]
+        return self.s1[-1]
+        
+
+    def empty(self):
+        """
+        :rtype: bool
+        """
+
+        return not self.s1
+
+
+# Your MyQueue object will be instantiated and called as such:
+# obj = MyQueue()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.peek()
+# param_4 = obj.empty()
