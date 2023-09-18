@@ -36,3 +36,33 @@ class Solution(object):
             return False
 
 time complexity is O(n) and space complexity is O(n)
+
+
+
+# alternative, more concise way using a dictionary to map appropriate pairings
+class Solution(object):
+    def isValid(self, s):
+        paren = {"}":"{", "]":"[",")":"("}
+        stack = []
+
+        for p in s: 
+            # checking if char is closing
+            if p in paren:
+                # pop case: if matches with top of stack, pair made
+                if stack and stack[-1] == paren[p]:
+                    stack.pop()
+                else:
+                    # not matching pair
+                    return False
+            else:
+                # char is not closing - push to stack
+                stack.append(p)
+
+        # if stack is empty, true
+        if not stack:
+            return True
+        else:
+            return False
+
+
+            
